@@ -1,0 +1,63 @@
+{% extends "stock/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container" id="body">
+    <h1>Stock Checker</h1>
+    {% for message in messages %}
+        <div class="alert alert-danger" data-alert="alert" >
+            <a class="close" data-dismiss="alert" href="#">x</a>
+            {{ message }}
+        </div>
+    {% endfor %}
+    <form method="POST">
+    	{% csrf_token %}
+    	{{ form }}
+    	<button class="btn btn-dark" type="submit" name="button">Get Data</button>
+        {% if labels %}
+        <div class="container" id="conclusion">
+    	   <p id="calculation">Buy at price <strong>${{ buy }}</strong> on <strong>{{ buy_date }}</strong> and sell at price <strong>${{ sell }}</strong> on <strong>{{ sell_date }}</strong>.<br>The maximum profit within the 5 days is <strong>${{ maxPri }}</strong> per share.</p>
+        </div>
+        {% endif %}
+    	<p id="myLabels">{{ labels }}</p>
+    	<p id="myData">{{ prices }}</p>
+    </form>
+    <p id="result"></p>
+    <div class="container" id="chart">
+    	<canvas id="myChart" width="50" height="50"></canvas>
+    </div>
+</div>
+{% endblock %}
+<script>
+{% block jquery %}
+var ctx = document.getElementById('myChart').getContext('2d');
+var labels = document.getElementById('myLabels').innerText
+var data = document.getElementById('myData').innerHTML 
+var labels_update = labels.replace("']", "")
+var labels_update2 = labels_update.replace("['", "")
+var labels_cleaned = labels_update2.split("', '")
+var data_update = data.replace("]", "")
+var data_update2 = data_update.replace("[", "")
+var data_cleaned = data_update2.split(", ")
+
+console.log(labels_cleaned)
+console.log(data_cleaned)
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: labels_cleaned,
+        datasets: [{
+            label: 'Stock Prices',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: data_cleaned
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+{% endblock %}
+</script>
