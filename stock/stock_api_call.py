@@ -10,8 +10,8 @@ def stock_api_call(ticker):
         time_label = []
         fmt = '%Y-%m-%d'
         now = datetime.today()
-        start = datetime(now.year, now.month, now.day, 20, 00)
-        while len(time_container) < 5:
+        start = datetime(now.year, now.month, now.day, 20, 00) - timedelta(days=1)
+        while len(time_container) < 6:
             if start.weekday() < 5:
                 time_container.insert(0, start)
                 # adding dates to labels
@@ -70,7 +70,6 @@ def stock_api_call(ticker):
     labels = data[4]
 
     for i in store:
-        print(i)
         if i[0] - i[1] == data[3]:
             results['buy'] = i[1]
             results['sell'] = i[0]
