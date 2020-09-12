@@ -28,3 +28,8 @@ body{
 	font-size: 1.3em;
 	color: #737373;
 }
+
+label{
+	font-weight: bold;
+	margin-right: 0.5em;
+}
