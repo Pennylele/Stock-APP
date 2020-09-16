@@ -15,7 +15,7 @@
     	<button class="btn btn-dark" type="submit" name="button">Get Data</button>
         {% if labels %}
         <div class="container" id="conclusion">
-    	   <p id="calculation">Buy at price <strong>${{ buy }}</strong> on <strong>{{ buy_date }}</strong> and sell at price <strong>${{ sell }}</strong> on <strong>{{ sell_date }}</strong>.<br>The maximum profit within the 5 days is <strong>${{ maxPri }}</strong> per share.</p>
+    	   <p id="calculation">Buy at price <strong>${{ buy }}</strong> on <strong>{{ buy_date }}</strong> and sell at price <strong>${{ sell }}</strong> on <strong>{{ sell_date }}</strong>.<br>The maximum profit within the past a few days is <strong>${{ maxPri }}</strong> per share.</p>
         </div>
         {% endif %}
     	<p id="myLabels">{{ labels }}</p>
