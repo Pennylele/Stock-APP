@@ -12,8 +12,6 @@
 	<!-- main.css -->	
 	<link rel="stylesheet" type="text/css" href="{% static 'stock/css/main.css' %}">
 
-	<!-- main.js -->
-	<script src="{% static 'stock/js/main.js' %}"></script>
 
 	{% if title %}
 		<title>Stock - {{ title }}</title>
@@ -26,9 +24,6 @@
 		{% block content %}{% endblock %}
 	</div>
 
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -37,12 +32,7 @@
 
 	<!-- chart.js -->
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
-    <script>
-    	$(document).ready(function(){
-    		{% block jquery %}{% endblock %}
-    	})
-    </script>
-
+    <script src="{% static 'stock/js/main.js' %}"></script>
 
 </body>
 </html>

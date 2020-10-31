@@ -61,7 +61,6 @@ def stock_api_call(ticker):
             return store, prices, dic, maxPri, labels
 
     results = {}
-    temp = []
     data = maxPri(ticker)
     store = data[0]
     price = data[1]
@@ -93,6 +92,4 @@ if __name__ == '__main__':
         arg = None
 
     stock_api_call(arg)
-
-# print(stock_api_call('AAPL'))
 

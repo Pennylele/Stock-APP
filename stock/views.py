@@ -1,15 +1,14 @@
 from datetime import date, datetime, timedelta
 from django.contrib import messages
-from django.http import JsonResponse
+#from django.http import JsonResponse
 from django.shortcuts import render
-from django.views.generic import View
+#from django.views.generic import View
 from .forms import TickerForm
-from rest_framework.decorators import api_view
+#from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from stock.stock_api_call import stock_api_call
 # from rest_framework import authentication, permissions
-import requests
 
 # Create your views here.
 def home(request):
@@ -18,7 +17,8 @@ def home(request):
         form = TickerForm(request.POST)
         args['form'] = form
         if form.is_valid():
-            ticker = form.cleaned_data.get('ticker')
+            ticker = form.cleaned_data.get('ticker').upper()
+            print(ticker)
             args['ticker'] = ticker
             try:
                 data = stock_api_call(ticker)
